@@ -1,0 +1,8 @@
+Class name: JShell
+
+Responsibilities:
+*Reads input commands
+*Checks to see if commands are valid
+Collaborators:
+*Directory
+*TextFile

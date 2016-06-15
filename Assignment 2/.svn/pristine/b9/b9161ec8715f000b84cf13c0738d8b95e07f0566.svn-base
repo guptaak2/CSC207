@@ -1,0 +1,23 @@
+User Stories:
+1) Exit the program
+As a user, I want to quit the program.
+
+2) Make a new directory
+As a user, I want to create a new directory so that I can sort my files.
+
+3) Change directory
+As a user, I want to change my current working directory so that I can access 
+different directories.
+
+4) List all files in directory
+As a user, I want to view the current files and directory existing in my curent
+working directory.
+
+5) Print working directory
+As a user, I want to display my current working directory so that I know where
+I am.
+
+6) Move files to another directory
+As a user, I want to move a directory/file from one location to another.
+
+

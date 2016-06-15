@@ -1,0 +1,56 @@
+
+
+public class ls {
+    //String[] filesDir;
+    PathHandler handle = new PathHandler();
+    
+    /**
+     * Lists all the directories and files in the current directory.
+     * @param curDir The current directory
+     */
+    public ls(File curDir){
+        for (int x=0;x<curDir.getSubDirs().size();x++){
+            if(!curDir.getSubDirs().get(x).getName().equals("/")){
+              System.out.println(curDir.getSubDirs().get(x).getName());
+            }
+        }
+        
+    }
+    /**
+     * Lists all the directories and files in the current directory.
+     * @param curDir The current directory
+     */
+       public ls(String path, Directory dir){
+           ListPath(path,dir);
+        }
+       
+       private void ListPath(String Path, Directory dir){
+           
+           String[] pathList = handle.stringToList(Path);
+           if (pathList.length == 0){
+             System.out.println("/:");
+             System.out.println("");
+             ls PrintDir = new ls (dir);
+              }
+           else if(!handle.pathExists(pathList, dir, 1, pathList.length-1)){
+                System.out.println("Path is not valid");
+              }
+           else {
+               if (handle.getDir().isDir){
+                 System.out.println(handle.getDir() + ":");
+                 System.out.println("");
+                 ls PrintDir = new ls (handle.getDir());
+               }
+               else{
+                 if (Path.charAt(Path.length()-1) == '/'){
+                   System.out.println("Path is invalid.");
+                 }
+                 else{
+                   System.out.println(handle.getDir().name);
+                 }
+              }
+           }
+           
+    
+}
+}

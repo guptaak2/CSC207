@@ -1,0 +1,33 @@
+Sprint 7 Backlog.  
+November 12th - 14th
+
+
+Product Backlog items to be implemented:
+User Stories:
+a) Program pushd DIR(Push an Entry)
+b) Program ls[-R] (List subdirectories)
+b) Program popd (Pop an Entry)
+d) Start making test cases regarding new commands like pushd and popd
+
+
+Specific tasks to be accomplished:
+a-1. (popd) create a new class & start coding on popd 
+b-1. (pushd) create a new class & start coding on pushd
+c-1. (testcases) create a new class & start testing cases for pushd & popd
+d-1  (ls[-R]) create a new class & continue coding on display subdirectories
+
+
+
+These tasks are assigned as follows:
+
+User: mangats2
+Tasks: d-1
+
+User: ahmadab2
+Tasks: b-1
+
+User: guptaak2
+Tasks: c-1
+
+User: abbass13
+Tasks: a-1

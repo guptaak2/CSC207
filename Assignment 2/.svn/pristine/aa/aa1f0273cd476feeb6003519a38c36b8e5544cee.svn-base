@@ -1,0 +1,11 @@
+Class name: EchoOverwrite
+Parent Class: Echo
+
+Responsibilities:
+*Checks if the file already exists
+*If it exists, it overwrites it with the giving string
+*Else, it creates and adds a new file with the given string as the content 
+Collaborators:
+*Directory
+*AddFile
+*File

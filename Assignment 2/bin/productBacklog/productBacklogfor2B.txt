@@ -1,0 +1,15 @@
+12) Remove Path
+As a user, I want to delete the path from the system.
+
+13) Remove Top Directory
+As a user, I want to remove the top most directory.
+
+14) Saves Directory
+As a user, I want to save my current working directory.
+
+15) Retrieve the file from a web address
+As a user, I want to retrieve the file through a URL web address
+
+16) List all subdirectories
+As a user, I want to view the current files and subdirectories from a current 
+directory.

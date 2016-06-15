@@ -1,0 +1,53 @@
+package driver;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the Co-Authors if an outfile is provided.
+ * 
+ * @param URL1
+ * @param URL2
+ * @param file
+ */
+public class CoAuthorsFile {
+  CoAuthorsFile(String URL1, String URL2, String file) throws IOException {
+    try {
+      GetHTML googleScholarParser1 = new GetHTML();
+      GetHTML googleScholarParser2 = new GetHTML();
+      String rawHTMLString1 = googleScholarParser1.getHTML(URL1);
+      String rawHTMLString2 = googleScholarParser2.getHTML(URL2);
+      List<String> lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject1 = patternObject.matcher(rawHTMLString1);
+      Matcher matcherObject2 = patternObject.matcher(rawHTMLString2);
+      while (matcherObject1.find()) {
+        lst.add(matcherObject1.group(2));
+      }
+      while (matcherObject2.find()) {
+        lst.add(matcherObject2.group(2));
+      }
+      Collections.sort(lst);
+      lst = new ArrayList<String>(new LinkedHashSet<String>(lst));
+      lst.remove("Citations");
+      lst.remove("h-index");
+      lst.remove("i10-index");
+      OutPut.FileOutPutStream("7: Co-Author list sorted (Total: " + lst.size() + ")",
+          file);
+      OutPut.FileOutPutStream("\n", file);
+      for (String name : lst) {
+        OutPut.FileOutPutStream(name, file);
+        OutPut.FileOutPutStream("\n", file);
+      }
+    } catch (Exception e) {
+      OutPut.FileOutPutStream("malformed URL or cannot open connection to "
+          + "given URL", file);
+    }
+  }
+}

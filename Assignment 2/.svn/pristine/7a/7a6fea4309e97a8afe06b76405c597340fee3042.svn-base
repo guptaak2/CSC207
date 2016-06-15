@@ -1,0 +1,75 @@
+// **********************************************************
+// Assignment2:
+// UTOR user_name1: guptaak2
+// UTOR user_name2: ahmadab2
+// UTOR user_name3: abbass13
+// UTOR user_name4: mangats2
+//
+// Author1: Akhil Gupta
+// Author2: Abdul Ahad Ahmad
+// Author3: Syed M Farjad Abbas
+// Author4: Satbir Mangat
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read the plagiarism section in the course info
+// sheet of CSC 207 and understand the consequences.
+// *********************************************************
+package driver;
+
+import java.io.File;
+import java.util.*;
+
+public class JShell {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int x = 0;
+		String command;
+
+		do {
+			System.out.print("/# ");
+			command = sc.nextLine();
+			String[] enter = command.split(" ");
+			if (enter[0].equals("mkdir")) {
+				doMkdir(enter[1]);
+
+			}
+
+			if (enter[0].equals("ls")) {
+				if(enter.length==1){
+					doLS(".");
+				}
+				else{
+					doLS(enter[1]);
+				}
+			}
+		} while (x == 0);
+
+	}
+
+	public static void doMkdir(String name) {
+		File directory = new File(name);
+		if (!directory.exists()) {
+			if (directory.mkdir()) {
+
+			} else {
+				System.out.println("Failed");
+			}
+		}
+	}
+
+	public static void doLS(String PathGiven) {
+
+		File directory = new File(PathGiven);
+		File[] directoryFiles = directory.listFiles();
+
+		for (int i = 0; i<directoryFiles.length; i++) {
+				System.out.println(directoryFiles[i].getName());
+
+			
+		}
+	}
+}

@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+
+public class File {
+  public File parent;
+  public String f;
+  public ArrayList<File> d = new ArrayList<File>();
+
+
+  public File(String f) {
+    this.f = f;
+  }
+
+  public void appendDirectory(String d2) {
+    File file = new File(d2);
+    file.parent = this;
+    d.add(file);
+  }
+
+
+
+  public String toString() {
+    String dir = "";
+    File endDir = this;
+    if (endDir.parent == null) {
+      dir += endDir.f;
+    }
+
+    else {
+      while (endDir.parent.parent != null) {
+        dir = endDir.f + "/" + dir;
+        endDir.f = endDir.parent.f;
+        endDir.parent = endDir.parent.parent;
+
+      }
+
+    }
+    if (endDir.parent != null && endDir.parent.parent == null) {
+      dir = endDir.parent.f + endDir.f + "/" + dir;
+    }
+    return dir;
+
+  }
+
+
+
+}

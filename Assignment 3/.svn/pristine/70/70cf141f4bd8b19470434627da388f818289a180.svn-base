@@ -1,0 +1,41 @@
+package driver;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the total citations (5 papers) if an outfile is
+ * provided.
+ * 
+ * @param googleScholarURL
+ * @param file
+ */
+public class ExtractTotalCitationsFile {
+  public ExtractTotalCitationsFile(String googleScholarURL, String file)
+      throws IOException {
+    try {
+      GetHTML googleScholarParser = new GetHTML();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      String reForTotalCitations = "cites=(.*?)\\\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForTotalCitations);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      int Total =
+          Integer.parseInt(lst.get(0)) + Integer.parseInt(lst.get(1))
+              + Integer.parseInt(lst.get(2)) + Integer.parseInt(lst.get(3))
+              + Integer.parseInt(lst.get(4));
+      OutPut.FileOutPutStream("5: Total paper citation (first 5 papers): "
+          + "\n" + "      " + Total, file);
+      OutPut.FileOutPutStream("\n", file);
+    } catch (Exception e) {
+      OutPut.FileOutPutStream("malformed URL or cannot open connection to "
+          + "given URL", file);
+    }
+  }
+}

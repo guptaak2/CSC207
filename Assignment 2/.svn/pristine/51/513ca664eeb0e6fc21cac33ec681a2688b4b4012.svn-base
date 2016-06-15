@@ -1,0 +1,214 @@
+// **********************************************************
+// Assignment2:
+// UTOR user_name1: guptaak2
+// UTOR user_name2: ahmadab2
+// UTOR user_name3: abbass13
+// UTOR user_name4: mangats2
+//
+// Author1: Akhil Gupta
+// Author2: Abdul Ahad Ahmad
+// Author3: Syed M Farjad Abbas
+// Author4: Satbir Mangat
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read the plagiarism section in the course info
+// sheet of CSC 207 and understand the consequences.
+// *********************************************************
+package driver;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class JShell {
+
+  public static void main(String[] args) throws IOException {
+    Directory dir = new Directory("/");
+    // mkdir mk = new mkdir();
+    // //pwd pwd = new pwd(dir.d.get(1));
+    // mk.addDirectoryRelative("hello", dir);
+    // mk.addDirectoryRelative("sup", dir.d.get(1));
+    // mk.addDirectoryRelative("sup", dir.d.get(1));
+    // pwd pwd1 = new pwd(dir.d.get(1));
+    // ls hello = new ls(dir.d.get(1));
+
+
+
+    boolean run_prompt = true;
+    // while loop to continue running command prompt
+    while (run_prompt) {
+      String user_input;
+      cd cd = new cd(dir);
+
+      Scanner in = new Scanner(System.in);
+      // asks user to enter command after "/#: "
+      System.out.print("/#: ");
+      user_input = in.nextLine();
+      // splits user_input in a list
+      String[] input = user_input.split(" +");
+
+      if (user_input.equals("exit")) {
+        // Case 1: "exit", it quits the program
+        System.exit(0);
+
+      } else if (input[0].equals("mkdir") && input.length > 1) {
+
+        // Case 2: "mkdir"
+        ArrayList<String> CreateDirPath = new ArrayList<String>();
+        ArrayList<String> CreateDirRelative = new ArrayList<String>();
+        mkdir addDir = new mkdir();
+
+        System.out.println(input[0]);
+        // System.out.println(input[1]);
+        for (int x = 1; x < input.length; x++) {
+          if (input[x].contains("/")) {
+            CreateDirPath.add(input[x]);
+          } else {
+            CreateDirRelative.add(input[x]);
+          }
+        }
+        for (int i = 0; i < CreateDirRelative.size(); i++) {
+          boolean search = true;
+
+          for (int j = 0; j < cd.getCurDir().d.size(); j++) {
+            if (CreateDirRelative.get(i).equals(dir.d.get(j).f.toString())
+                && search) {
+              search = false;
+              System.out
+                  .println("Directory "
+                      + CreateDirRelative.get(i).toUpperCase()
+                      + " already exists.");
+
+
+            }
+
+          }
+          if (search) {
+            addDir.addDirectoryRelative(CreateDirRelative.get(i),
+                cd.getCurDir());
+            // System.out.println(curDir.d);
+          }
+
+        }
+
+        for (int k = 0; k < CreateDirPath.size(); k++) {
+          boolean search = true;
+
+          String[] pathSplit = CreateDirPath.get(k).split("/");
+
+          ArrayList<String> pathList = new ArrayList<String>();
+
+          for (int m = 1; m < pathSplit.length; m++) {
+            pathList.add(pathSplit[m]);
+          }
+
+
+
+          do {
+            File cur = dir;
+
+            if (pathList.size() == 1) {
+              int repeated = 0;
+              for (int j = 0; j < cur.d.size(); j++) {
+                if (cur.d.get(j).f.equals(pathList.get(0).toString())) {
+                  System.out.println("Directory "
+                      + pathList.get(0).toUpperCase() + " already exists.");
+
+                  repeated += 1;
+                  search = false;
+
+                }
+              }
+              if (repeated == 0) {
+                addDir.addDirectoryRelative(pathList.get(0), cur);
+                // System.out.println("test");
+                search = false;
+
+              }
+
+            } else {
+
+
+              for (int i = 0; i < cur.d.size(); i++) {
+
+                if (pathList.size() == 1) {
+                  int repeated = 0;
+                  for (int j = 0; j < cur.d.size(); j++) {
+                    if (cur.d.get(j).f.equals(pathList.get(0).toString())) {
+                      System.out.println("Directory "
+                          + pathList.get(0).toUpperCase() + " already exists.");
+
+                      repeated += 1;
+                      search = false;
+
+                    }
+                  }
+                  if (repeated == 0) {
+                    addDir.addDirectoryRelative(pathList.get(0), cur);
+                    // System.out.println("test");
+                    search = false;
+
+                  }
+
+                }
+
+
+                if (i == (cur.d.size() - 1)
+                    && cur.d.get(i).f.equals(pathList.get(0).toString()) == false) {
+                  System.out.println("Directory "
+                      + pathList.get(0).toUpperCase() + " does not exist");
+
+                  search = false;
+                  break;
+
+                }
+                if (search && cur.d.get(i).f.equals(pathList.get(0).toString())
+                    && cur.d.size() > 1) {
+
+                  // System.out.println(cur.d.get(i).f
+                  // + " test " + pathList.get(0));
+
+                  pathList.remove(0);
+                  cur = cur.d.get(i);
+                  search = true;
+
+
+                }
+                // System.out.println(cur.d);
+
+              }
+            }
+
+            // System.out.println(cur.d);
+            // System.out.println(pathList.get(0).toString());
+
+          } while (search == true);
+
+        }
+
+        // System.out.println(curDir);
+
+      } else if (input[0].equals("cd") && input.length == 2) {
+        // Case 3: "cd"
+        System.out.println(input[0]);
+        cd ChangeDir = new cd(input[1], dir);
+
+      } else if (input[0].equals("ls")) {
+        // Case 4: "ls"
+        System.out.println(input[0]);
+        ls ListDir = new ls(cd.getCurDir());
+
+      }
+    }
+  }
+
+  // @Override
+  // public String toString() {
+  // return "JShell [getClass()=" + getClass() + ", hashCode()="
+  // + hashCode() + ", toString()=" + super.toString() + "]";
+  // }
+}

@@ -1,0 +1,108 @@
+package driver;
+
+import java.util.ArrayList;
+
+
+public class PathHandler {
+  private File validDir;
+  
+  /**
+   * Check if the the path given is valid
+   * @param path The path
+   * @return
+   */
+  public boolean isPath(String path) {
+    boolean isPath = false;
+    int counter = 0;
+    for (int ch = 0; ch < path.length(); ch++){
+      if (path.charAt(ch) == '/'){
+        counter++;
+      }
+    }
+    if (counter == 1){
+      isPath = path.charAt(path.length()-1) != '/';
+    }
+    return counter > 1 || isPath || path.equals("/") || path.charAt(0) == '.';
+  }
+
+  /**
+   * Split the string for each directory in path
+   * @param path Path to split
+   * @return Array of path split at each directory
+   */
+  public String[] stringToList(String path) {
+    return path.split("/");
+  }
+  
+  /**
+   * Returns a path that does not contain special characters
+   * @param path The path 
+   * @param curDir The current directory
+   * @return path without special characters
+   */
+  public String getSpecialPath(String path,File curDir){
+    String specialPath = path;
+    if (path.length() > 1 && path.charAt(0) == '.' &&
+          path.charAt(1) == '.'){
+      if (curDir.getParent() != null){
+        specialPath = curDir.getParent() + path.substring(2);
+      }if (curDir.getParent() != null && 
+          curDir.getParent().getName().equals("/")){
+        specialPath = path.substring(2);
+      }else{
+        System.out.println("Invalid path.");
+      }
+    }else if (path.length() > 0 && 
+        path.charAt(0) == '.'){
+      specialPath = curDir + path.substring(1);
+    }
+    return specialPath;
+  }
+  
+  // start is initially 1 and end is always pathList.length-1
+  /**
+   * Check if path exist
+   * @param pathList The path to check 
+   * @param dir The root directory
+   * @param start Starting index of path
+   * @param end Last index of path
+   * @return True if path exist, otherwise False
+   */
+  public boolean pathExists(String[] pathList, File dir, int start, int end) {
+    boolean inDir = false;
+    int indexOfMatch = -1;
+    if (pathList.length == 0) {
+      return true;
+    } // only directory in path is the root
+    
+    if (!pathList[0].equals("")) { // checks if first directory in path is root
+      return false;
+    }
+
+
+    for (int i = 0; i < dir.getSubDirs().size(); i++) {
+      if (pathList[start].equals( dir.getSubDirs().get(i).getName())) {
+    inDir = true;
+    indexOfMatch = i;
+      }
+    }
+
+    if (inDir && start == end) {
+      this.validDir=dir.getSubDirs().get(indexOfMatch);
+      return true;
+    } 
+    if (inDir && start != end && dir.getSubDirs().get(indexOfMatch).getIsDir()) {
+      return pathExists(pathList, dir.getSubDirs().get(indexOfMatch),
+      start + 1, end);
+    }
+    return false;
+  }
+  
+  /**
+   * Get the valid directory
+   * @return valid directory
+   */
+  public File getDir(){
+    return validDir;
+  }
+}

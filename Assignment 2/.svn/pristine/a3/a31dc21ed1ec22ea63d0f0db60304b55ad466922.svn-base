@@ -1,0 +1,7 @@
+Class name: ls
+
+Responsibilities:
+*Print the names of files and directories in the current directory
+Collaborators:
+*Directory
+*TextFile

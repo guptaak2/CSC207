@@ -1,0 +1,10 @@
+User Stories:
+1) Exit the program
+As a user, I want to quit the program.
+
+2) Make a new directory
+As a user, I want to create a new directory so that I can sort my files.
+
+3) Change directory
+As a user, I want to change my current working directory so that I can access 
+different directories.

@@ -1,0 +1,9 @@
+a) What did I work on last time? 
+- I completed half of the framework for JShell
+- Also  created sprint 2 with group
+ 
+b) What do I plan to work on now?  
+- Start working on pwd
+
+c) Am I blocked on anything?  
+- nothing

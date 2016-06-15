@@ -1,0 +1,13 @@
+Class Name: JShell
+Subclasses: mv, cp
+
+Responsiblities:
+moves directories from one location to another
+renames directories after its re-located
+the path for the files can be either absolute or relative paths
+able to make a backup for an existing file destination
+in cp, it can copy the directories and files, without removing it from its original destination
+
+Collaboration:
+JShell
+cat

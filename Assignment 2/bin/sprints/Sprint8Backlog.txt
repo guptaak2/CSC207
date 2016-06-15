@@ -1,0 +1,37 @@
+Sprint 8 Backlog.  
+November 14th - 15th 
+
+
+Product Backlog items to be implemented:
+User Stories:
+a) Create UnitTest cases
+b) In process to finsih programming rm[-f] (remove)
+c) In process to finsih programming 'get URL' (getting a web address)
+d) In process to finsih programming 'grep[-R]' (regex in path)
+e) Finished programming pushd (push an entry)
+f) Finished programming popd (pop an entry)
+g) Finished programming ls-R command (lists subdirectories)
+
+
+
+Specific tasks to be accomplished:
+a-1. continue making unit test cases 
+b-1. (get URL) create a new class & continue coding 'get URL' 
+c-1. (rm[-f]) create a new class & continue coding remove
+d-1  (grep[-R]) create new classes & continue working on it
+
+
+
+These tasks are assigned as follows:
+
+User: mangats2
+Tasks: d-1
+
+User: ahmadab2
+Tasks: c-1
+
+User: guptaak2
+Tasks: b-1
+
+User: abbass13
+Tasks: a-1

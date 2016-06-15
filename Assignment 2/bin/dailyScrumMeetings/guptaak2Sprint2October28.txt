@@ -1,0 +1,9 @@
+a) What did I do last time?
+	-completed half of the framework for JShell
+	-created sprint 2 with group
+b) What do I plan to do now?
+	- create Test Cases Class for Directory & File
+c) Am I blocked on anything?
+	- no I am not blocked on anything
+	
+	

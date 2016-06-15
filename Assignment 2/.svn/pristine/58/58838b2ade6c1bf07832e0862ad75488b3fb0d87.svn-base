@@ -1,0 +1,7 @@
+Class name: AddFile
+
+Responsibilities:
+*Add a file to the current directory
+Collaborators:
+*Directory
+*File

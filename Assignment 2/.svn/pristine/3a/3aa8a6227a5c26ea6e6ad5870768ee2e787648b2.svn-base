@@ -1,0 +1,35 @@
+Sprint 5 Backlog.  
+October 31 
+
+
+Product Backlog items to be implemented:
+User Stories:
+a) Create UnitTest cases
+b) Program mv (move)
+c) Program cp (Copy)
+d) Finished programming cd (change current working directory)
+e) Finished programming cat (view the contents of a file)
+f) Finished programming echo command (adds and overwrite contents to a file)
+g) Finished programming PathHandler
+
+
+Specific tasks to be accomplished:
+a-1. continue making unit test cases 
+b-1. (cp) create a new class & continue coding Copy 
+c-1. (mv) create a new class & continue coding Move
+
+
+
+These tasks are assigned as follows:
+
+User: mangats2
+Tasks: b-1
+
+User: ahmadab2
+Tasks: c-1
+
+User: guptaak2
+Tasks: a-1
+
+User: abbass13
+Tasks: a-1

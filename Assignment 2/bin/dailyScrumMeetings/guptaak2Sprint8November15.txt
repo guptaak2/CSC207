@@ -1,0 +1,9 @@
+a) What did I work on last time?
+- I finished test cases for pushd & popd
+- Also  created sprint 8 with group
+ 
+b) What do I plan to work on now?  
+- Continue coding on the 'get url' and complete it
+
+c) Am I blocked on anything?  
+- nothing

@@ -1,0 +1,45 @@
+package driver;
+
+import java.util.ArrayList;
+import java.io.*;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the Co-Authors if no outfile is provided.
+ * 
+ * @param URL1
+ * @param URL2
+ */
+public class CoAuthors {
+  String PrintCoAuthorsLabel;
+  List<String> CoAuthorsList;
+  public static List<String> CoAuthorsTest;
+
+  public CoAuthors(String googleScholarURL) {
+    try {
+      GetHTML googleScholarParser = new GetHTML();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      Collections.sort(lst);
+      lst = new ArrayList<String>(new LinkedHashSet<String>(lst));
+      lst.remove("Citations");
+      lst.remove("h-index");
+      lst.remove("i10-index");
+      CoAuthorsList = lst;
+      CoAuthorsTest = lst;
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+}

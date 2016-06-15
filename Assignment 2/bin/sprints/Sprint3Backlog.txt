@@ -1,0 +1,32 @@
+Sprint 3 Backlog.  
+October 29 to October 30 
+
+
+Product Backlog items to be implemented:
+User Stories:
+a) Create UnitTest cases
+b) Program echo command (adds and overwrite contents to a file)
+c) Program PathHandler
+d) Program cd (change current working directory)
+
+
+Specific tasks to be accomplished:
+a-1. (testCases) create a new class & start making unit test cases command
+b-1. (cat) create a new class & start coding PathHandler (checks if path exists)
+c-1. (echo) create a new class & start coding echo
+d-1. (cd) create a new class & start coding cd command 
+
+
+These tasks are assigned as follows:
+
+User: mangats2
+Tasks: b-1 
+
+User: ahmadab2
+Tasks: c-1	
+
+User: guptaak2
+Tasks: a-1
+
+User: abbass13
+Tasks: d-1

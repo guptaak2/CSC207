@@ -1,0 +1,13 @@
+Class Name: JShell
+Subclasses: echo
+
+Responsiblities:
+displays the lines of text 
+puts the text in a specfic file
+if the file does not exists, it creates a new file
+if the file already exists, it replaces with the current file
+this symbol [>>] appends an additional line to that file, instead of replacing the original text
+
+Collaboration:
+JShell
+

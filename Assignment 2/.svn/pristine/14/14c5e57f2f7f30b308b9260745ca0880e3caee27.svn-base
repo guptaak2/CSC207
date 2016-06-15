@@ -1,0 +1,92 @@
+package driver;
+public class man {
+  public man(String command) {
+    if (command.equals("mkdir")) {
+      getMkdir();
+    } else if (command.equals("exit")) {
+      getExit();
+    } else if (command.equals("cd")) {
+      getCd();
+    } else if (command.equals("ls")) {
+      getLs();
+    } else if (command.equals("mv")) {
+      getMv();
+    } else if (command.equals("cp")) {
+      getCp();
+    } else if (command.equals("cat")) {
+      getCat();
+    } else if (command.equals("echo")) {
+      getEcho();
+    } else if (command.equals("pwd")) {
+      getPwd();
+    } else if (command.equals("man")) {
+
+      getMan();
+    } else {
+      System.out.println("Invalid command, please try again.");
+    }
+  }
+
+  public void getExit() {
+    System.out.println("Quit the program.");
+  }
+
+  public void getMkdir() {
+    System.out.println("Create directories, each of which may be relative "
+        + "to the current directory or may be a full path.");
+  }
+
+  public void getCd() {
+    System.out.println("Change directory to DIR, which may be "
+        + "relative to the current directory or may be a full path\n"
+        + "As with Unix, .. means a parent directory "
+        + "and a . mean the current directory");
+  }
+
+  public void getLs() {
+    System.out
+        .println("If no paths are given, print the contents "
+            + "(file or directory) of the current directory\n"
+            + "with a  new line following each of the content (file or directory).");
+  }
+
+  public void getPwd() {
+    System.out.println("Print the current working directory path (i.e. the"
+        + " whole absolute path)");
+  }
+
+  public void getMv() {
+    System.out
+        .println("Move item OLDPATH to NEWPATH. Both OLDPATH  "
+            + "and NEWPATH may be relative to the current directory or may be full paths.\n"
+            + "If NEWPATH is a directory, move the item into the directory");
+  }
+
+  public void getCp() {
+    System.out
+        .println("Move item OLDPATH to NEWPATH. Both OLDPATH and NEWPATH may be "
+            + "relative to the current directory or may be full paths.\n"
+            + "If NEWPATH is a directory, move the item into the directory. "
+            + "Doesn't remove item OLDPATH.");
+  }
+
+  public void getCat() {
+    System.out.println("Display the contents of FILE in the shell.");
+  }
+
+  public void getEcho() {
+    System.out
+        .println("If OUTFILE is not provided, print STRING on the "
+            + "on the shell. Otherwise, put STRING into file OUTFILE. STRING is a \n"
+            + "string of characters surrounded by double quotation marks. This "
+            + "creates a new file if OUTFILE does not exists and erases the old \n"
+            + "contents if OUTFILE already exists. In either case, the only in "
+            + "OUTFILE should be STRING.\n If >> is an argument, it would have the same"
+            + " procedure except it would append to existing conent.");
+  }
+
+  public void getMan() {
+    System.out.println("Print documentation for CMD");
+  }
+
+}

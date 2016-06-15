@@ -1,0 +1,35 @@
+package driver;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the Author's name if no outfile is provided.
+ * 
+ * @param googleScholarURL
+ */
+public class ExtractAuthorsName {
+  String Author;
+
+  public ExtractAuthorsName(String googleScholarURL) {
+    try {
+      GetHTML googleScholarParser = new GetHTML();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForAuthorExtraction =
+          "<span id=\"cit-name-display\" "
+              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+      Pattern patternObject = Pattern.compile(reForAuthorExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        Author =
+            "1. Name of Author: " + "\n" + "      " + matcherObject.group(1);
+      }
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+}

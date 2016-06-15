@@ -1,0 +1,34 @@
+Sprint 1 Backlog.  
+October 20 to October 24
+
+
+Product Backlog items to be implemented:
+User Stories:
+a) Prompt the user for input
+b) Parse the user input through an interpreter
+c) Make a new Directory
+d) Make a File & TextFile
+
+
+Specific tasks to be accomplished:
+a-1. (JShell) Begin coding the structure of the command line interpreter
+a-2. (JShell) Have the shell continually prompt the user for input
+b-1. (JShell) Parse the user input for proper keywords
+c-1. (Directory) Start coding Directory 
+d-1. (File) Start coding File
+d-2. (TextFile) Start coding Textfile
+d-3. (mkdir) Create a new directory
+
+These tasks are assigned as follows:
+
+User: mangats2
+Tasks: c-1, d-1, d-2
+
+User: ahmadab2
+Tasks: a-1, a-2
+
+User: guptaak2
+Tasks: a-1, b-1
+
+User: abbass13
+Tasks: d-3

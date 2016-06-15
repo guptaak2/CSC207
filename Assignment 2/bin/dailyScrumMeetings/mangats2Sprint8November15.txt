@@ -1,0 +1,9 @@
+a) What did I work on last time?
+- I finished coding ls[-R]
+- Also  created sprint 8 with group
+ 
+b) What do I plan to work on now?  
+- Continue coding the bonus part, grep and complete it
+
+c) Am I blocked on anything?  
+- nothing

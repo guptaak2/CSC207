@@ -1,0 +1,7 @@
+Class name: File
+Subclasses: TextFile, Directory
+
+Responsibilities:
+*Store data
+Collaborators:
+*

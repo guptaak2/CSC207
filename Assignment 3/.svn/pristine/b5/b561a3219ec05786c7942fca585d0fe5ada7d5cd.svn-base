@@ -1,0 +1,39 @@
+package driver;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the i10-index if no outfile is provided.
+ * 
+ * @param googleScholarURL
+ */
+public class Extracti10Index {
+  String i10Index;
+  public String i10IndexTest;
+
+  public Extracti10Index(String googleScholarURL) {
+    try {
+      GetHTML googleScholarParser = new GetHTML();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reForCitationExtraction =
+          "<td class=\"cit-borderleft cit-data\">(.*?)</td>";
+      Pattern patternObject = Pattern.compile(reForCitationExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      i10Index =
+          "3. Number of i10-index after 2009: " + "\n" + "      "
+              + lst.get(5).toString();
+      i10IndexTest = lst.get(5).toString();
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+}

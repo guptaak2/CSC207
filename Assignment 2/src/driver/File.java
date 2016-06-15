@@ -1,0 +1,113 @@
+package driver;
+import java.util.ArrayList;
+
+public class File {
+  protected File parent;
+  protected String name;
+  protected String content;
+  protected boolean isDir;
+  protected ArrayList<File> subDirs = new ArrayList<File>();
+
+  /**
+   * Create a directory
+   * @param name The name of directory
+   */
+  public File(String name) {
+    this.name = name;
+    this.isDir = true;
+  }
+
+  /**
+   * Create a file 
+   * @param name The name of file
+   * @param content The contents in file
+   */
+  public File(String name, String content) {
+    this.name = name;
+    this.content = content;
+  }
+  
+  /**
+   * Add file to current directory
+   * @param file File to add
+   */
+  public void appendFile(File file){
+    this.subDirs.add(file);
+    file.parent = this;
+    
+    
+  }
+  /**
+   * Add directory to current directory
+   * @param dir The name of directory
+   */
+  public void appendDirectory(String dir) {
+    File file = new File(dir);
+    file.parent = this;
+    file.isDir = true;
+    this.subDirs.add(file);
+  }
+
+
+
+  /**
+   * Get the path of files
+   * @return The path of File
+   */
+  public String toString() {    
+    if (this.name == "/"){
+      return "/";
+    }
+    else if (this.parent.name.equals("/")){
+      return   "/" + this.name;
+    }
+    else{
+      return  this.parent + "/" + this.name;
+    }
+
+  }
+
+  /**
+   * Get the name of File
+   * @return The name of File
+   */
+  public String getName() {
+    return this.name;
+  }
+
+  /**
+   * Get the contents of File
+   * @return Contents of File
+   */
+  public String getContent() {
+    return this.content;
+  }
+  
+  /**
+   * Get the parent of File
+   * @return The parent of File
+   */
+  public File getParent(){
+    return this.parent;
+  }
+  public void setParent(File parent){
+    this.parent = parent;
+  }
+  
+  /**
+   * Return whether file is a directory or not
+   * @return True if file is directory, otherwise False
+   */
+  public boolean getIsDir(){
+    return this.isDir;
+  }
+
+  /**
+   * Return the sub directories in the File
+   * @return Directories in File
+   */
+  public ArrayList<File> getSubDirs() {
+    return this.subDirs;
+  }
+
+}

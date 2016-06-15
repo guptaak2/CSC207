@@ -1,0 +1,11 @@
+Class Name: JShell
+Subclass: mkdir
+
+Responsiblities:
+Make a directory
+failure command would give shell error
+successful commonad would create the directory
+
+Collaboration:
+JShell
+cat

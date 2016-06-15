@@ -1,0 +1,39 @@
+package driver;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the total number of Co-Authors if no outfile is
+ * provided.
+ * 
+ * @param googleScholarURL
+ */
+public class ExtractCoAuthors {
+  String CoAuthors;
+  String BlankLine;
+  ExtractCoAuthors(String googleScholarURL) {
+    try {
+      GetHTML googleScholarParser = new GetHTML();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      List<String> sub_lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      sub_lst = lst.subList(0, lst.size() - 3);
+      CoAuthors = "6: Total Co-Authors: " + "\n" + "      "
+          + sub_lst.size();
+      BlankLine = "--------------------------------------------";
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+}

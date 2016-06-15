@@ -1,0 +1,9 @@
+Class name: GetURL
+Parent Class: AddFile
+
+Responsibilities:
+*Retrieve the file at the URL 
+*Add file to the current directory
+Collaborators:
+*Directory
+*TextFile

@@ -1,0 +1,9 @@
+Class name: mv
+Parent class: cp
+
+Responsibilities:
+*copy the original file in a new location
+*delete the file from original location
+Collaborators:
+*Directory
+*TextFile

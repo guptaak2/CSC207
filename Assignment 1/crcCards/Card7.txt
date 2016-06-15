@@ -1,0 +1,13 @@
+Class Name: CAT
+Subclasses: Echo
+
+Responsiblities:
+Displays the lines of text. 
+Puts the text in a specfic file.
+If the file does not exists, it creates a new file.
+If the file already exists, it replaces with the current file.
+This symbol [>>] appends an additional line to that file, instead of replacing the original text.
+
+Collaboration:
+None
+

@@ -1,0 +1,8 @@
+Class name: cp
+Subclasses: mv
+
+Responsibilities:
+*copy the original file in a new location
+Collaborators:
+*Directory
+*TextFile

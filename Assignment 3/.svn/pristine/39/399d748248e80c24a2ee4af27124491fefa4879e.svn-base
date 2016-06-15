@@ -1,0 +1,18 @@
+package test;
+
+import static org.junit.Assert.*;
+import driver.ExtractCoAuthors;
+
+import org.junit.Test;
+
+public class ExtractCoAuthorsTest {
+
+  @Test
+  public void testExtractCoAuthors() {
+    ExtractCoAuthors function = new ExtractCoAuthors("sample1.html");
+    ExtractCoAuthors function2 = new ExtractCoAuthors("sample2.html");
+    assertEquals(15, function.CoAuthorsTest);
+    assertEquals(14, function2.CoAuthorsTest);
+  }
+
+}

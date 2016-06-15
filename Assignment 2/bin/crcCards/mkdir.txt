@@ -1,0 +1,6 @@
+Class name: mkdir
+
+Responsibilities:
+*Create an empty directory
+Collaborators:
+*Directory

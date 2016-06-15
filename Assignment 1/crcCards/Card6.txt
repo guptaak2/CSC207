@@ -1,0 +1,12 @@
+Class Name: Cat
+Subclasses: Get
+
+Responsiblities:
+This command can be use to send request to WWW servers. 
+Also, this command can be use to send request to your local file systems.
+Gets the file at that url.
+Adds it to the current directory.
+
+
+Collaboration:
+None

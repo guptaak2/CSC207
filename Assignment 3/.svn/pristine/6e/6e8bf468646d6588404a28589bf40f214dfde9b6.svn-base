@@ -1,0 +1,35 @@
+package driver;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the first 3 publications if no outfile is provided.
+ * @param googleScholarURL
+ */
+public class Extract3Publications {
+  String ThreePublications;
+    Extract3Publications(String googleScholarURL) {
+    try {
+      GetHTML googleScholarParser = new GetHTML();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reFor3Publications = " class=\"cit-dark-large-link\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reFor3Publications);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      ThreePublications = "4: Title of the first 3 publications: " + "\n"
+          + "      " + "1- " + lst.get(0).toString() + "\n" + "      " + "2- "
+          + lst.get(1).toString() + "\n" + "      " + "3- "
+          + lst.get(2).toString();
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+}

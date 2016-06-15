@@ -1,0 +1,49 @@
+package driver;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * This class prints out the Co-Authors if no outfile is provided.
+ * 
+ * @param URL1
+ * @param URL2
+ */
+public class CoAuthors {
+  String PrintCoAuthorsLabel;
+  List<String> CoAuthorsList;
+  CoAuthors(String URL1, String URL2) {
+    try {
+      GetHTML googleScholarParser1 = new GetHTML();
+      GetHTML googleScholarParser2 = new GetHTML();
+      String rawHTMLString1 = googleScholarParser1.getHTML(URL1);
+      String rawHTMLString2 = googleScholarParser2.getHTML(URL2);
+      List<String> lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject1 = patternObject.matcher(rawHTMLString1);
+      Matcher matcherObject2 = patternObject.matcher(rawHTMLString2);
+      while (matcherObject1.find()) {
+        lst.add(matcherObject1.group(2));
+      }
+      while (matcherObject2.find()) {
+        lst.add(matcherObject2.group(2));
+      }
+      Collections.sort(lst);
+      lst = new ArrayList<String>(new LinkedHashSet<String>(lst));
+      lst.remove("Citations");
+      lst.remove("h-index");
+      lst.remove("i10-index");
+      PrintCoAuthorsLabel = "7: Co-Author list sorted (Total: " + lst.size() + ")";
+      CoAuthorsList = lst; 
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+}

@@ -1,0 +1,12 @@
+Class Name: ManageDirectory
+Subclasses: MoveDirectory
+
+Responsiblities:
+Moves directories from one location to another
+Renames directories after its re-located
+The path for the files can be either absolute or relative paths
+Able to make a backup for an existing file destination
+In cp, it can copy the directories and files, without removing it from its original destination
+
+Collaboration:
+Cat

@@ -1,0 +1,14 @@
+Class name: Man
+
+Responsibilities:
+*Prints the documentation of the given command
+Collaborators:
+*Cat
+*cd
+*cp
+*EchoAppend
+*EchoOverwrite
+*ls
+*mkdir
+*mv
+*pwd

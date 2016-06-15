@@ -1,0 +1,12 @@
+Class Name: JShell
+Subclass: JShellPrint
+
+Responsiblities:
+LS, it Lists directory content.
+Takes two arguments (option, filename)
+Sorts directories alphabatically.
+Uses colour to differentiate between files and folders.
+In pwd, it prints the current directory using absolute path.
+
+Collaboration:
+None

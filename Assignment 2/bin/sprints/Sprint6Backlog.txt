@@ -1,0 +1,35 @@
+Sprint 6 Backlog.  
+November 11th - 12th
+
+
+Product Backlog items to be implemented:
+User Stories:
+a) Program rm[-f] path(Remove)
+b) Program ls[-R] (List subdirectories)
+c) Understand every	PATH, FILE,	and	DIR may	either be relative path or a full 
+path (absolute path).
+d) Start making test cases regarding new commands like remove and display 
+subdirectories
+
+
+Specific tasks to be accomplished:
+a-1. (rm[-f]) create a new class & start coding on rm 
+b-1. (JShell) Begin understanding the clarification of the lists indication
+c-1. (testcases) create a new class & start testing cases for remove & display
+d-1  (ls[-R]) create a new class & start coding on display subdirectories
+
+
+
+These tasks are assigned as follows:
+
+User: mangats2
+Tasks: d-1
+
+User: ahmadab2
+Tasks: a-1
+
+User: guptaak2
+Tasks: b-1
+
+User: abbass13
+Tasks: c-1

@@ -1,0 +1,16 @@
+Class Name: JShell
+Sub Class Name: Manage Directories
+
+Responsibilities:
+Successful commonad would create the directory
+Change directory path
+Determine the current path location
+Based on the current path, refer the user to another directory
+Takes an absolute path
+Takes a related path
+Failure command would give shell error
+
+Collaboration:
+MoveDirectory, 
+JShellPrint, 
+Get

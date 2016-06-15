@@ -1,0 +1,95 @@
+package driver;
+
+// **********************************************************
+// Assignment3:
+// UTORID user_name: guptaak2
+//
+// Author: Akhil Gupta
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// *********************************************************
+import java.io.*;
+import java.util.*;
+
+public class MyParser {
+
+  /**
+   * @param args
+   * @throws Exception
+   */
+  public static void main(String[] args) throws Exception {
+    List<String> FinalCoAuthorsList = new ArrayList<String>();
+    // TODO Auto-generated method stub
+    if (args.length == 0) {
+      throw new IllegalArgumentException("No input URL's provided");
+    }
+    try {
+      if (args.length == 2) {
+        String inputFiles[] = args[0].split(",");
+        for (String inputFile : inputFiles) {
+          ExtractAuthorsNameFile AuthorFile =
+              new ExtractAuthorsNameFile(inputFile, args[1]);
+
+          ExtractCitationsFile CitationsFile =
+              new ExtractCitationsFile(inputFile, args[1]);
+
+          Extracti10IndexFile i10IndexFile =
+              new Extracti10IndexFile(inputFile, args[1]);
+
+          Extract3PublicationsFile ThreePublicationsFile =
+              new Extract3PublicationsFile(inputFile, args[1]);
+
+          ExtractTotalCitationsFile TotalCitationsFile =
+              new ExtractTotalCitationsFile(inputFile, args[1]);
+
+          ExtractCoAuthorsFile CoAuthorsFile =
+              new ExtractCoAuthorsFile(inputFile, args[1]);
+
+          CoAuthorsFile PrintCoAuthorsFile =
+              new CoAuthorsFile(inputFile, args[1]);
+        }
+
+      } else {
+        String inputFiles[] = args[0].split(",");
+        for (String inputFile : inputFiles) {
+          ExtractAuthorsName Author = new ExtractAuthorsName(inputFile);
+          System.out.println(Author.Author);
+
+          ExtractCitations Citations = new ExtractCitations(inputFile);
+          System.out.println(Citations.Citations);
+
+          Extracti10Index i10Index = new Extracti10Index(inputFile);
+          System.out.println(i10Index.i10Index);
+
+          Extract3Publications ThreePublications =
+              new Extract3Publications(inputFile);
+          System.out.println(ThreePublications.ThreePublications);
+
+          ExtractTotalCitations TotalCitations =
+              new ExtractTotalCitations(inputFile);
+          System.out.println(TotalCitations.TotalCitations);
+
+          ExtractCoAuthors CoAuthors = new ExtractCoAuthors(inputFile);
+          System.out.println(CoAuthors.CoAuthors);
+          System.out.println(CoAuthors.BlankLine);
+          System.out.println();
+          
+          CoAuthors PrintCoAuthors = new CoAuthors(inputFile);
+          FinalCoAuthorsList.addAll(PrintCoAuthors.CoAuthorsList);
+          Collections.sort(FinalCoAuthorsList);
+        }
+        System.out.println("7: Co-Author list sorted (Total: "
+            + FinalCoAuthorsList.size() + ")");
+        for (String name : FinalCoAuthorsList) {
+          System.out.println(name);
+        }
+      }
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+}

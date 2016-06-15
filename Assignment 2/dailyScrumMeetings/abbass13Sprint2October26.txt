@@ -1,0 +1,9 @@
+a) What did I work on last time? 
+- I finished mkdir
+- Also  created sprint 2 with group
+ 
+b) What do I plan to work on now?  
+- Start working on cd
+
+c) Am I blocked on anything?  
+- nothing!

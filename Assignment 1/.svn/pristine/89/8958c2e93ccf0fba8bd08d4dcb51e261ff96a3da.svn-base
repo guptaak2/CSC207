@@ -1,0 +1,12 @@
+Class Name: JShell
+Subclass: Ls, pwd
+
+Responsiblities:
+lists directory content
+suppose to take two arguments(option, filename)
+sorts directories alphabatically
+uses colour to differentiate between files and folders
+in pwd, it prints the current directory using absolute path.
+
+Collaboration:
+JShell

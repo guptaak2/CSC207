@@ -1,0 +1,19 @@
+package driver;
+
+public class popd {
+  cd changer = new cd();
+  
+  public File popAndChange(File dir, File curDir, fileStack fs){
+    String popped = fs.pop();
+    if(popped != null){
+      File newDir = changer.ChangeDirectory(popped, dir, curDir);
+      if (newDir != curDir)
+        return newDir;
+      else {
+        System.out.println("It has now been removed from the file stack.");
+      }
+    }
+    return curDir;
+ }
+
+}

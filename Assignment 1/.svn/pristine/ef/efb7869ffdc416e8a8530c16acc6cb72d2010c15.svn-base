@@ -1,0 +1,15 @@
+Class Name: JShell
+Subclasses: cat
+
+Responsiblities:
+reads data from files and outputs their content
+create a file
+display text files
+combines text files
+copies text file
+
+
+Collaboration:
+JShell
+CP
+mkdir

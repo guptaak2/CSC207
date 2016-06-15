@@ -1,0 +1,10 @@
+public class mkdir {
+        public void addDirectoryRelative(String toMake, File curDir){
+                curDir.appendDirectory(toMake);
+        }
+        public void addDirectoryPath(String toMake, Directory dir){
+                dir.appendDirectory(toMake);
+        }
+        
+
+}

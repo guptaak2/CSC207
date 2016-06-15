@@ -1,0 +1,22 @@
+package driver;
+public class pushd {
+  
+  
+	/**
+	   * Adds current directory to file stack and changes which ever directory is 
+	   * given
+	   * @param dir The root directory
+	   * @param curDir The current directory
+	   * @param fs The file stack
+	   * @return The new current directory
+	   */
+  public File pushAndChange(File dir, File curDir, String toChange, fileStack fs){
+    cd changer = new cd();
+    File newDir = changer.ChangeDirectory(toChange, dir, curDir);
+    if(newDir != curDir){
+      fs.push(curDir.toString());
+    }
+    return newDir;
+    
+  }
+}

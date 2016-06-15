@@ -1,0 +1,24 @@
+package driver;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+/**
+ * This method is used to print data to a file.
+ * 
+ * @param content
+ * @param outfile
+ * @throws IOException
+ */
+public class OutPut {
+  public static void FileOutPutStream(String content, String outfile)
+      throws IOException {
+    File file = new File(outfile + ".txt");
+    file.createNewFile();
+    FileWriter writer = new FileWriter(file, true);
+    writer.write(content);
+    writer.flush();
+    writer.close();
+  }
+}

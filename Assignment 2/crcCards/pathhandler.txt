@@ -1,0 +1,6 @@
+Class name: PathHandler
+
+Responsibilities:
+*check if given string is a valid path and if it exists in the directory
+Collaborators:
+*File

@@ -1,0 +1,449 @@
+package driver;
+
+// **********************************************************
+// Assignment3:
+// UTORID user_name: guptaak2
+//
+// Author: Akhil Gupta
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// *********************************************************
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.*;
+import java.io.*;
+
+public class MyParser {
+
+  /**
+   * @param args
+   */
+  public static void main(String[] args) {
+    DEBUGStarterCode(args);
+  }
+
+  /*
+   * This is a debug/helper method to help you get started. Once you understand
+   * how this method is being used, you are free to refactor it, modify it, or
+   * change it, or remove it entirely in any way you like.
+   */
+  private static void DEBUGStarterCode(String[] args) {
+    try {
+      // System.out.println("DEBUG: URLS are " + args[0]);
+      // System.out.println("DEBUG: FileName is " + args[1]);
+    } catch (Exception e) {
+      System.out.println("Did you change the run configuration in"
+          + "Eclipse for argument0 and argument 1?");
+    }
+
+    // TODO Auto-generated method stub
+    if (args.length == 2) {
+      String inputFiles[] = args[0].split(",");
+      for (String inputFile : inputFiles) {
+        extractAuthorsNameFile(inputFile, args[1]);
+        extractCitationsFile(inputFile, args[1]);
+        extracti10IndexFile(inputFile, args[1]);
+        extract3publicationsFile(inputFile, args[1]);
+        extractTotalCitationsFile(inputFile, args[1]);
+        extractCoAuthorsFile(inputFile, args[1]);
+      }
+      printCoAuthorsFile(inputFiles[0], inputFiles[1], args[1]);
+    } else {
+      String inputFiles[] = args[0].split(",");
+      for (String inputFile : inputFiles) {
+        extractAuthorsName(inputFile);
+        extractCitations(inputFile);
+        extracti10Index(inputFile);
+        extract3publications(inputFile);
+        extractTotalCitations(inputFile);
+        extractCoAuthors(inputFile);
+      }
+      printCoAuthors(inputFiles[0], inputFiles[1]);
+    }
+  }
+
+  /*
+   * This is a debug/helper method to help you get started. Once you understand
+   * how this method is being used i.e. the String re, Pattern, Matcher and how
+   * the authors name is being extracted, feel free to remove this method or
+   * refactor it in any way you like.
+   */
+  private static void extractAuthorsName(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForAuthorExtraction =
+          "<span id=\"cit-name-display\" "
+              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+      Pattern patternObject = Pattern.compile(reForAuthorExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        System.out.println("1. Name of Author: " + "\n" + "      "
+            + matcherObject.group(1));
+      }
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extractAuthorsNameFile(String googleScholarURL,
+      String file) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+
+      String reForAuthorExtraction =
+          "<span id=\"cit-name-display\" "
+              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+      Pattern patternObject = Pattern.compile(reForAuthorExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        FileOutPutStream("1. Name of Author: " + "\n" + "      "
+            + matcherObject.group(1), file);
+        FileOutPutStream("\n", file);
+      }
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+
+  private static void extractCitations(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reForCitationExtraction =
+          "<td class=\"cit-borderleft cit-data\">(.*?)</td>";
+      Pattern patternObject = Pattern.compile(reForCitationExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      System.out.println("2. Number of All Citations: " + "\n" + "      "
+          + lst.get(0).toString());
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extractCitationsFile(String googleScholarURL, String file) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reForCitationExtraction =
+          "<td class=\"cit-borderleft cit-data\">(.*?)</td>";
+      Pattern patternObject = Pattern.compile(reForCitationExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      FileOutPutStream("2. Number of All Citations: " + "\n" + "      "
+          + lst.get(0).toString(), file);
+      FileOutPutStream("\n", file);
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extracti10Index(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reForCitationExtraction =
+          "<td class=\"cit-borderleft cit-data\">(.*?)</td>";
+      Pattern patternObject = Pattern.compile(reForCitationExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      System.out.println("3. Number of i10-index after 2009: " + "\n"
+          + "      " + lst.get(5).toString());
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extracti10IndexFile(String googleScholarURL, String file) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reForCitationExtraction =
+          "<td class=\"cit-borderleft cit-data\">(.*?)</td>";
+      Pattern patternObject = Pattern.compile(reForCitationExtraction);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      FileOutPutStream("3. Number of i10-index after 2009: " + "\n" + "      "
+          + lst.get(5).toString(), file);
+      FileOutPutStream("\n", file);
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extract3publications(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reFor3Publications = " class=\"cit-dark-large-link\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reFor3Publications);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      System.out.println("4: Title of the first 3 publications: " + "\n"
+          + "      " + "1- " + lst.get(0).toString() + "\n" + "      " + "2- "
+          + lst.get(1).toString() + "\n" + "      " + "3- "
+          + lst.get(2).toString());
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extract3publicationsFile(String googleScholarURL,
+      String file) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      List<String> lst = new ArrayList<String>();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      String reFor3Publications = " class=\"cit-dark-large-link\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reFor3Publications);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(1));
+      }
+      FileOutPutStream("4: Title of the first 3 publications: " + "\n"
+          + "      " + "1- " + lst.get(0).toString() + "\n" + "      " + "2- "
+          + lst.get(1).toString() + "\n" + "      " + "3- "
+          + lst.get(2).toString(), file);
+      FileOutPutStream("\n", file);
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extractTotalCitations(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      String reForTotalCitations = "cites=(.*?)\\\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForTotalCitations);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      int Total =
+          Integer.parseInt(lst.get(0)) + Integer.parseInt(lst.get(1))
+              + Integer.parseInt(lst.get(2)) + Integer.parseInt(lst.get(3))
+              + Integer.parseInt(lst.get(4));
+      System.out.println("5: Total paper citation (first 5 papers): " + "\n"
+          + "      " + Total);
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extractTotalCitationsFile(String googleScholarURL,
+      String file) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      String reForTotalCitations = "cites=(.*?)\\\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForTotalCitations);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      int Total =
+          Integer.parseInt(lst.get(0)) + Integer.parseInt(lst.get(1))
+              + Integer.parseInt(lst.get(2)) + Integer.parseInt(lst.get(3))
+              + Integer.parseInt(lst.get(4));
+      FileOutPutStream("5: Total paper citation (first 5 papers): " + "\n"
+          + "      " + Total, file);
+      FileOutPutStream("\n", file);
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extractCoAuthors(String googleScholarURL) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      List<String> sub_lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      sub_lst = lst.subList(0, lst.size() - 3);
+      System.out.println("6: Total Co-Authors: " + "\n" + "      "
+          + sub_lst.size());
+      System.out.println("--------------------------------------------");
+      System.out.println();
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  private static void extractCoAuthorsFile(String googleScholarURL, String file) {
+    try {
+      MyParser googleScholarParser = new MyParser();
+      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+      List<String> lst = new ArrayList<String>();
+      List<String> sub_lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+      while (matcherObject.find()) {
+        lst.add(matcherObject.group(2));
+      }
+      sub_lst = lst.subList(0, lst.size() - 3);
+      FileOutPutStream(
+          "6: Total Co-Authors: " + "\n" + "      " + sub_lst.size(), file);
+      FileOutPutStream("\n", file);
+      FileOutPutStream("--------------------------------------------", file);
+      FileOutPutStream("\n", file);
+
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  public static void printCoAuthors(String URL1, String URL2) {
+    try {
+      MyParser googleScholarParser1 = new MyParser();
+      MyParser googleScholarParser2 = new MyParser();
+      String rawHTMLString1 = googleScholarParser1.getHTML(URL1);
+      String rawHTMLString2 = googleScholarParser2.getHTML(URL2);
+      List<String> lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject1 = patternObject.matcher(rawHTMLString1);
+      Matcher matcherObject2 = patternObject.matcher(rawHTMLString2);
+      while (matcherObject1.find()) {
+        lst.add(matcherObject1.group(2));
+      }
+      while (matcherObject2.find()) {
+        lst.add(matcherObject2.group(2));
+      }
+      Collections.sort(lst);
+      lst = new ArrayList<String>(new LinkedHashSet<String>(lst));
+      lst.remove("Citations");
+      lst.remove("h-index");
+      lst.remove("i10-index");
+      System.out
+          .println("7: Co-Author list sorted (Total: " + lst.size() + ")");
+      for (String name : lst) {
+        System.out.println(name);
+      }
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  public static void printCoAuthorsFile(String URL1, String URL2, String file) {
+    try {
+      MyParser googleScholarParser1 = new MyParser();
+      MyParser googleScholarParser2 = new MyParser();
+      String rawHTMLString1 = googleScholarParser1.getHTML(URL1);
+      String rawHTMLString2 = googleScholarParser2.getHTML(URL2);
+      List<String> lst = new ArrayList<String>();
+      String reForCoAuthors = " title=\"(.*?)\">(.*?)</a>";
+      Pattern patternObject = Pattern.compile(reForCoAuthors);
+      Matcher matcherObject1 = patternObject.matcher(rawHTMLString1);
+      Matcher matcherObject2 = patternObject.matcher(rawHTMLString2);
+      while (matcherObject1.find()) {
+        lst.add(matcherObject1.group(2));
+      }
+      while (matcherObject2.find()) {
+        lst.add(matcherObject2.group(2));
+      }
+      Collections.sort(lst);
+      lst = new ArrayList<String>(new LinkedHashSet<String>(lst));
+      lst.remove("Citations");
+      lst.remove("h-index");
+      lst.remove("i10-index");
+      FileOutPutStream("7: Co-Author list sorted (Total: " + lst.size() + ")",
+          file);
+      FileOutPutStream("\n", file);
+      for (String name : lst) {
+        FileOutPutStream(name, file);
+        FileOutPutStream("\n", file);
+      }
+    } catch (Exception e) {
+      System.out.println("malformed URL or cannot open connection to "
+          + "given URL");
+    }
+  }
+
+  public String getHTML(String urlString) throws Exception {
+    // create object to store html source text as it is being collected
+    StringBuilder html = new StringBuilder();
+    // open connection to given url
+    URL url = new File(urlString).toURI().toURL();
+    // create BufferedReader to buffer the given url's HTML source
+    BufferedReader htmlbr =
+        new BufferedReader(new InputStreamReader(url.openStream()));
+    String line;
+    // read each line of HTML code and store in StringBuilder
+    while ((line = htmlbr.readLine()) != null) {
+      html.append(line);
+    }
+    htmlbr.close();
+    // convert StringBuilder into a String and return it
+    return html.toString();
+  }
+  
+  public static void FileOutPutStream(String content, String outfile) throws IOException {
+
+    File file = new File(outfile + ".txt");
+    file.createNewFile();
+    FileWriter writer = new FileWriter(file, true); 
+    writer.write(content); 
+    writer.flush();
+    writer.close();
+  }
+}

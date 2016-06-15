@@ -1,0 +1,6 @@
+Class name: Cat
+
+Responsibilities:
+*Print the contents of a text file
+Collaborators:
+*TextFile

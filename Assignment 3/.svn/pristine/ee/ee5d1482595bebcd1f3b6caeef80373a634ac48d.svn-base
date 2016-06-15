@@ -1,0 +1,17 @@
+package test;
+
+import static org.junit.Assert.*;
+import driver.ExtractAuthorsName;
+import org.junit.Test;
+
+public class ExtractAuthorsNameTest {
+
+  @Test
+  public void testExtractAuthorsName() {
+    ExtractAuthorsName function = new ExtractAuthorsName("sample1.html");
+    ExtractAuthorsName function2 = new ExtractAuthorsName("sample2.html");
+    assertEquals("Ola Spjuth", function.AuthorName); // TODO
+    assertEquals("Yan Xu", function2.AuthorName);
+  }
+
+}

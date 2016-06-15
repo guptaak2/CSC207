@@ -1,0 +1,7 @@
+Class name: TextFile
+Parent class: File
+
+Responsibilities:
+*Store textual data
+Collaborators:
+*

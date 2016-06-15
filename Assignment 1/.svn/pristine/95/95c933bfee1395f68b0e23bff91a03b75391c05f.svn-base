@@ -1,0 +1,12 @@
+Class Name: JShell
+Subclasses: get
+
+Responsiblities:
+this command can be use to send request to WWW servers 
+Also, this command can be use to send request to your local file systems
+gets the file at that url 
+adds it to the current directory
+
+
+Collaboration:
+JShell

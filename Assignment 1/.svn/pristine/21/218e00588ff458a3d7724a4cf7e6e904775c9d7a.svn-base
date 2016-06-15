@@ -1,0 +1,12 @@
+Class Name: JShell
+
+Responsiblities:
+Manage directories and files
+Display the contents of any files
+Display the movement of any directory
+Quits the program, if "exit" is written by the user
+
+Collaboration:
+ManageDirectories
+CAT
+

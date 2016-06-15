@@ -1,0 +1,14 @@
+package driver;
+
+
+public class pwd {
+	/**
+	 * Prints the working directory
+	 * @param curDir The current directory
+	 */
+	public pwd(File curDir){
+		
+		System.out.println(curDir.toString());
+	}
+
+}
